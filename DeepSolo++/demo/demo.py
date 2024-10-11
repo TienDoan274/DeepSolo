@@ -85,8 +85,7 @@ if __name__ == "__main__":
             img = read_image(path, format="BGR")
             start_time = time.time()
             predictions, visualized_output = demo.run_on_image(img)
-            if("sem_seg" in predictions):
-                print(predictions['sem_seg'])
+            print(predictions["instances"].pred_boxes)
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
         cam = cv2.VideoCapture(0)
