@@ -86,7 +86,8 @@ if __name__ == "__main__":
             start_time = time.time()
             predictions, visualized_output = demo.run_on_image(img)
             import torch
-            tiendoan = predictions
+            torch.save(predictions,'tiendoan.pt')
+            break
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
         cam = cv2.VideoCapture(0)
