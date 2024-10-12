@@ -81,14 +81,22 @@ if __name__ == "__main__":
             args.input = glob.glob(os.path.expanduser(args.input[0]))
             assert args.input, "The input path(s) was not found"
         resultss = []
-        for path in tqdm.tqdm(args.input, disable=not args.output):
+        for path in tqdm.tqdm(args.input[:100], disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
             start_time = time.time()
             predictions, visualized_output = demo.run_on_image(img)
+            if args.output:
+                if os.path.isdir(args.output):
+                    assert os.path.isdir(args.output), args.output
+                    out_filename = os.path.join(args.output, os.path.basename(path))
+                else:
+                    assert len(args.input) == 1, "Please specify a directory with args.output"
+                    out_filename = args.output
+                visualized_output.save(out_filename)
             resultss.append(predictions['instances'].bd)
         import torch
-        torch.save(resultss,'tien2.pt')
+        torch.save(resultss,'tien3.pt')
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
         cam = cv2.VideoCapture(0)
