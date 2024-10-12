@@ -81,7 +81,7 @@ if __name__ == "__main__":
             args.input = glob.glob(os.path.expanduser(args.input[0]))
             assert args.input, "The input path(s) was not found"
         resultss = []
-        for path in tqdm.tqdm(args.input[:200], disable=not args.output):
+        for path in tqdm.tqdm(args.input, disable=not args.output):
             # use PIL, to be consistent with evaluation
             img = read_image(path, format="BGR")
             start_time = time.time()
