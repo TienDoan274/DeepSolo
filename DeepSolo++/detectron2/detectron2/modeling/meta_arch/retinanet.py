@@ -49,7 +49,7 @@ class RetinaNet(DenseDetector):
         test_score_thresh=0.05,
         test_topk_candidates=1000,
         test_nms_thresh=0.5,
-        max_detections_per_image=100,
+        max_detections_per_image=1000,
         pixel_mean,
         pixel_std,
         vis_period=0,

@@ -96,7 +96,7 @@ if __name__ == "__main__":
                 visualized_output.save(out_filename)
             resultss.append(predictions['instances'].bd)
         import torch
-        torch.save(resultss,'tien.pt')
+        torch.save(resultss,'tien4.pt')
     elif args.webcam:
         assert args.input is None, "Cannot have both --input and --webcam!"
         cam = cv2.VideoCapture(0)
